@@ -1,0 +1,69 @@
+<script type="text/javascript">
+    RED.nodes.registerType('openam-oauth2',{
+        category: 'ForgeRock',
+        color: '#CCB2FF',
+        defaults: {
+            server: {value:"", type:"openam-server", required:true},
+            name: {value:""},
+            realm: {value: "/"},
+            authMethod: {value: "POST", required:true},
+            redirectUrl: {value: "https://"},
+            scope: {value: ""},
+            clientId: {value:"", required:true},
+            clientSecret: {value: "", required:true}
+        },
+        credentials: {
+            clientId: {type:"text"},
+            clientSecret: {type: "password"}
+        },
+        inputs:1,
+        outputs:2,
+        icon: "forgerock.png",
+        label: function() {
+            return this.name||"openam-oauth2";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="openam-oauth2">
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-tag"></i> Server</label>
+        <input type="text" id="node-input-server" placeholder="server">
+      </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-realm"><i class="icon-tag"></i>Realm</label>
+        <input type="text" id="node-input-realm" placeholder="/">
+    </div>
+    <div class="form-row">
+        <label for="node-input-clientId"><i class="icon-tag"></i>Client ID</label>
+        <input type="text" id="node-input-clientId" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-clientSecret"><i class="icon-tag"></i>Client Secret</label>
+        <input type="password" id="node-input-clientSecret" placeholder="">
+    </div>
+    <div class="form-row">
+        <label for="node-input-authMethod"><i class="icon-tag"></i>Token Endpoint AuthN Method</label>
+        <select id="node-config-input-authMethod">
+            <option value="POST">POST</option>
+            <option value="Basic">Basic</option>
+            <option value="JWT">JWT (to be implemented)</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-redirectUrl"><i class="icon-tag"></i>Redirect URL</label>
+        <input type="text" id="node-input-redirectUrl" placeholder="https://">
+    </div>
+    <div class="form-row">
+        <label for="node-input-scope"><i class="icon-tag"></i>Scope (whitespace separated)</label>
+        <input type="text" id="node-input-scope" placeholder="scope1 scope2">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="openam-oauth2">
+    <p>An OpenAM OAuth2 node</p>
+</script>

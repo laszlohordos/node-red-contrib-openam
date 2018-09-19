@@ -1,0 +1,38 @@
+{
+  "author": {
+    "name": "Maxim Salnikov",
+    "email": "salnikov@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/webmaxru/node-red-contrib-openam/issues"
+  },
+  "dependencies": {
+    "request-promise": "^4.2.2"
+  },
+  "description": "Node RED node for ForgeRock OpenAM",
+  "homepage": "https://github.com/webmaxru/node-red-contrib-openam#readme",
+  "keywords": [
+    "node-red",
+    "nodered",
+    "openam",
+    "oauth2",
+    "forgerock"
+  ],
+  "license": "MIT",
+  "main": "openam-oauth2.js",
+  "name": "node-red-contrib-openam",
+  "node-red": {
+    "nodes": {
+      "openam-oauth2": "openam-oauth2.js",
+      "openam-server": "openam-server.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webmaxru/node-red-contrib-openam.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.1.0"
+}
