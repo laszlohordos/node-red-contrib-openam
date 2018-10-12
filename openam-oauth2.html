@@ -1,26 +1,38 @@
 <script type="text/javascript">
     RED.nodes.registerType('openam-oauth2',{
         category: 'ForgeRock',
-        color: '#CCB2FF',
+        color: '#A6BBCF',
         defaults: {
             server: {value:"", type:"openam-server", required:true},
             name: {value:""},
             realm: {value: "/"},
             authMethod: {value: "POST", required:true},
-            redirectUrl: {value: "https://"},
-            scope: {value: ""},
-            clientId: {value:"", required:true},
-            clientSecret: {value: "", required:true}
+            redirectUri: {value: "https://"},
+            scope: {value: ""}
         },
         credentials: {
             clientId: {type:"text"},
             clientSecret: {type: "password"}
         },
         inputs:1,
+        inputLabels: "OAuth2 token request",
         outputs:2,
+        outputLabels: ["OAuth2 token","Error"],
         icon: "forgerock.png",
         label: function() {
             return this.name||"openam-oauth2";
+        },
+        oneditsave: function() {
+            var trimFields = [
+                "clientId",
+                "clientSecret"
+            ];
+            // Just in case any whitespace has crept in with the copy-paste of the fields
+            trimFields.forEach(function(field) {
+                var v = $("#node-input-"+field).val();
+                v = v.trim();
+                $("#node-input-"+field).val(v);
+            });
         }
     });
 </script>
@@ -55,8 +67,8 @@
         </select>
     </div>
     <div class="form-row">
-        <label for="node-input-redirectUrl"><i class="icon-tag"></i>Redirect URL</label>
-        <input type="text" id="node-input-redirectUrl" placeholder="https://">
+        <label for="node-input-redirectUri"><i class="icon-tag"></i>Redirect URI</label>
+        <input type="text" id="node-input-redirectUri" placeholder="https://">
     </div>
     <div class="form-row">
         <label for="node-input-scope"><i class="icon-tag"></i>Scope (whitespace separated)</label>
@@ -66,4 +78,26 @@
 
 <script type="text/x-red" data-help-name="openam-oauth2">
     <p>An OpenAM OAuth2 node</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">object</span>
+        </dt>
+        <dd> the payload of the message to publish. </dd>
+    </dl>
+
+    <h3>Outputs</h3>
+       <dl class="message-properties">
+       <dt>payload
+           <span class="property-type">object</span>
+       </dt>
+       </dl>
+       <dl class="message-properties">
+       <dt>payload
+            <span class="property-type">string | object</span>
+       </dt>
+       </dl>
+
+   <h3>Details</h3>
+   <p>Some more information about the node.</p>
 </script>

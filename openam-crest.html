@@ -1,0 +1,78 @@
+<script type="text/javascript">
+    RED.nodes.registerType('openam-crest', {
+        category: 'ForgeRock',
+        color: '#A6BBCF',
+        defaults: {
+            server: { value: "", type: "openam-server", required: true },
+            name: { value: "" },
+            realm: {value: "/"},
+            resourcePath: {value: null},
+            op: { value: "create" }
+        },
+        inputs: 1,
+        inputLabels: "CREST Request",
+        outputs: 2,
+        outputLabels: ["Result", "Error"],
+        icon: "forgerock.png",
+        label: function () {
+            return this.name || "openam-crest";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="openam-crest">
+    <div class="form-row">
+        <label for="node-input-server"><i class="icon-tag"></i>Server</label>
+        <input type="text" id="node-input-server" placeholder="server">
+      </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-realm"><i class="icon-tag"></i>Realm</label>
+        <input type="text" id="node-input-realm" placeholder="Realm">
+    </div>
+    <div class="form-row">
+        <label for="node-input-resourcePath"><i class="icon-tag"></i>Resource Path</label>
+        <input type="text" id="node-input-resourcePath" placeholder="/users">
+    </div>
+    <div class="form-row">
+        <label for="node-input-op"><i class="icon-tag"></i>Operation</label>
+        <select id="node-input-op">
+            <option value="create">Create</option>
+            <option value="read">Read</option>
+            <option value="update">Update</option>
+            <option value="delete">Delete</option>
+            <option value="patch">Patch</option>
+            <option value="action">Action</option>
+            <option value="query">Query</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="openam-crest">
+    <p>An OpenAM CREST node</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">object</span>
+        </dt>
+        <dd> the payload of the message to publish. </dd>
+    </dl>
+
+    <h3>Outputs</h3>
+       <dl class="message-properties">
+       <dt>payload
+           <span class="property-type">object</span>
+       </dt>
+       </dl>
+       <dl class="message-properties">
+       <dt>payload
+            <span class="property-type">string | object</span>
+       </dt>
+       </dl>
+
+   <h3>Details</h3>
+   <p>Some more information about the node.</p>
+</script>
