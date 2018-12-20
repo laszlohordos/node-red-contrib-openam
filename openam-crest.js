@@ -59,21 +59,21 @@ module.exports = function(RED) {
                         delete msg.resourceId
                         delete msg.resourcePath
                         delete msg.resourceType
-                        node.send([msg, null])
                         node.status({
                             fill: 'green',
                             shape: 'dot',
                             text: ' '
                         })
+                        node.send([msg, null])
                     }).catch((error) => {
-                        msg.error = error
-                        node.send([null, msg])
+                        msg.error = (({ message, name }) => ({ message, name }))(error);
                         node.status({
                             fill: 'red',
                             shape: 'dot',
-                            text: error.name
+                            text: msg.error.message
                         })
                         node.error(error)
+                        node.send([null, msg])
                     })
                 }
             }
